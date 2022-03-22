@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../Task';
 
@@ -8,6 +8,7 @@ import { Task } from '../../Task';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
+  @Input() id!: number;
   tasks: Task[] = [];
 
   constructor(private taskService: TaskService) { }
@@ -16,8 +17,8 @@ export class TasksComponent implements OnInit {
     this.taskService.getTasks().subscribe(list => this.tasks = list);
   }
 
-  deleteTask() {
-    console.log("delete");
+  deleteTask(task: Task) {
+    this.taskService.deleteTask(task).subscribe(() => this.tasks = this.tasks.filter(t => t.id !== task.id));
   }
 
 }
