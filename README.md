@@ -1,4 +1,8 @@
-# AngularCourse
+# ng_TaskList
+
+Small ToDo project, developed using the Angular framework with the intent of learning the framework and getting familiar with it using previous experience with React.
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
