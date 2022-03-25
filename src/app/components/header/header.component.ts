@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { UiService } from '../../services/ui.service';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   title: string = "Task Tracker";
-  constructor() { }
+  showAddTask!: boolean;
+  subscription!: Subscription;
+
+  constructor(private uiService: UiService) {
+    this.subscription = this.uiService.onToggle().subscribe(val => this.showAddTask = val);
+  }
 
   ngOnInit(): void { // Si quiero código que se ejecute cuando el componente cargue, se pondría aquí.
   }
 
   toggleAddTask() {
-    console.log('toggled');
+    this.uiService.toggleAddTask();
   }
 }

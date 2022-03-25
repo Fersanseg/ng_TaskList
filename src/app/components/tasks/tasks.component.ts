@@ -11,7 +11,8 @@ export class TasksComponent implements OnInit {
   @Input() id!: number;
   tasks: Task[] = [];
 
-  constructor(private taskService: TaskService) { }
+  constructor(
+    private taskService: TaskService) {}
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe(list => this.tasks = list);
@@ -27,7 +28,7 @@ export class TasksComponent implements OnInit {
   }
 
   addTask(task: Task) {
-    this.taskService.addTask(task).subscribe(t => this.tasks.push(task));
+    this.taskService.addTask(task).subscribe(t => this.tasks.push(t));
   }
 
 }
